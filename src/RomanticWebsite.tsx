@@ -151,7 +151,7 @@ const RomanticWebsite: React.FC = () => {
 
 Desde que te conheci, minha vida ganhou mais cor, mais sentido e muito mais amor. Você é meu porto seguro, meu sorriso favorito e o motivo dos meus melhores dias.
 
-Neste dia especial, quero te lembrar o quanto te amo e o quanto sou grato(a) por dividir a vida contigo. Que este novo ciclo seja cheio de alegrias, conquistas e sonhos realizados — estarei aqui, ao seu lado, em cada passo.
+Neste dia especial, quero te lembrar o quanto te amo e o quanto sou grato por dividir a vida contigo. Que este novo ciclo seja cheio de alegrias, conquistas e sonhos realizados — estarei aqui, ao seu lado, em cada passo.
 
 Feliz aniversário, meu amor. Que nunca falte amor, saúde, risadas... e muitos beijos meus! 💖
 
