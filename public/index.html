@@ -1,43 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+   <link rel="icon" href="%PUBLIC_URL%/favicon.ico?v=3" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#ff69b4" />
+    
+    <!-- Meta Tags Principais -->
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Sob Mil Lanternas - Uma jornada mágica de amor, celebrando cada momento desde o nosso primeiro encontro. Contadores de tempo, memórias especiais e uma carta do coração."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <meta name="keywords" content="amor, relacionamento, aniversário, momentos especiais, lanternas, romance, carta de amor, contadores de tempo" />
+    <meta name="author" content="Feito com amor" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sobmillanternas.com/" />
+    <meta property="og:title" content="Sob Mil Lanternas - Nossa História de Amor" />
+    <meta property="og:description" content="Uma experiência mágica celebrando nosso amor, com contadores de tempo especiais, memórias preciosas e uma carta do coração. ✨💕" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sobmillanternas.com/" />
+    <meta property="twitter:title" content="Sob Mil Lanternas - Nossa História de Amor" />
+    <meta property="twitter:description" content="Uma experiência mágica celebrando nosso amor ✨💕" />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    
+    <!-- Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    
+    <!-- Fontes Românticas do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&family=Sacramento&display=swap" rel="stylesheet">
+    
+    <!-- Otimizações de Performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Meta tags adicionais -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Sob Mil Lanternas" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Sob Mil Lanternas" />
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Sob Mil Lanternas",
+      "description": "Uma jornada mágica de amor, celebrando cada momento especial",
+      "url": "https://sobmillanternas.com",
+      "author": {
+        "@type": "Person",
+        "name": "Feito com Amor"
+      },
+      "dateCreated": "2024",
+      "inLanguage": "pt-BR",
+      "keywords": "amor, relacionamento, lanternas, romance, momentos especiais"
+    }
+    </script>
+    
+    <title>Sob Mil Lanternas - Nossa História de Amor ✨💕</title>
+    
+    <!-- Estilos inline para carregamento mais rápido -->
+    <style>
+      /* Fonte romântica principal */
+      body {
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #1f2937;
+        overflow-x: hidden;
+      }
+      
+      /* Estilo para elementos com fonte cursiva */
+      .cursive-font {
+        font-family: 'Dancing Script', 'Great Vibes', 'Sacramento', cursive;
+      }
+      
+      /* Loading screen romântico */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-heart {
+        font-size: 3rem;
+        animation: heartbeat 1.5s ease-in-out infinite;
+        color: #ff69b4;
+      }
+      
+      @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+      }
+      
+      /* Esconder loading após carregamento */
+      .loaded .loading-screen {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: Arial, sans-serif;">
+        <h1>💕 Sob Mil Lanternas</h1>
+        <p>Você precisa habilitar o JavaScript para ver nossa história de amor. ✨</p>
+        <p>Por favor, ative o JavaScript no seu navegador e recarregue a página.</p>
+      </div>
+    </noscript>
+    
+    <!-- Loading Screen Romântico -->
+    <div class="loading-screen" id="loading">
+      <div style="text-align: center;">
+        <div class="loading-heart">💖</div>
+        <p style="color: white; margin-top: 1rem; font-family: 'Dancing Script', cursive; font-size: 1.2rem;">
+          Carregando nossa história de amor...
+        </p>
+      </div>
+    </div>
+    
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
+    <!-- Script para remover loading screen -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.body.classList.add('loaded');
+          setTimeout(function() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+              loading.style.display = 'none';
+            }
+          }, 500);
+        }, 1000); // Mostra loading por pelo menos 1 segundo
+      });
+    </script>
+    
+    <!-- Preload de imagens importantes -->
+    <link rel="preload" href="%PUBLIC_URL%/nw.jpg" as="image">
+    <link rel="preload" href="%PUBLIC_URL%/14.jpeg" as="image">
   </body>
 </html>
