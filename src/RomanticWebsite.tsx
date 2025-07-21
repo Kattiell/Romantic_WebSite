@@ -140,8 +140,8 @@ const RomanticWebsite: React.FC = () => {
       left: Math.random() * 100,
       delay: -(Math.random() * 35 + 15),
       size: 10 + Math.random() * 12,
-      duration: 10 + Math.random() * 8,
-      speedVariation: 0.7 + Math.random() * 0.6
+      duration: 18 + Math.random() * 12, // Mais lento: era 10 + Math.random() * 8
+      speedVariation: 0.5 + Math.random() * 0.4 // Mais lento: era 0.7 + Math.random() * 0.6
     }));
   };
 
@@ -202,13 +202,23 @@ Seu coração apaixonado ❤️`;
     },
     {
       title: "Memória 4",
-      caption: "Momentos como estes fazem nossa história de amor ainda mais especial",
+      caption: "É vivendo esses instantes que percebo o quanto sou feliz por ter você",
       image: "18.jpeg"
     },
     {
       title: "Memória 5",
-      caption: "Momentos como estes fazem nossa história de amor ainda mais especial",
+      caption: "Você transforma qualquer momento em uma lembrança eterna",
       image: "19.jpeg"
+    },
+    {
+      title: "Memória 6",
+      caption: "Nossa história é feita de detalhes simples que se tornam eternos",
+      image: "20.jpeg"
+    },
+            {
+      title: "Memória 7",
+      caption: "Cada novo dia contigo é um capítulo lindo do nosso conto de amor",
+      image: "21.jpeg"
     }
   ];
 
@@ -399,33 +409,56 @@ Seu coração apaixonado ❤️`;
           box-sizing: border-box;
         }
         
-        /* Layout espacial sem bordas visuais */
+        /* Layout espacial sem bordas visuais - Otimizado para mobile */
         .top-section {
           width: 100%;
-          min-height: 180px;
-          margin-bottom: 20px;
+          min-height: 120px; /* Reduzido de 180px para mobile */
+          margin-bottom: 15px; /* Reduzido de 20px */
+        }
+        
+        @media (min-width: 640px) {
+          .top-section {
+            min-height: 160px;
+            margin-bottom: 20px;
+          }
         }
         
         .bottom-left {
           width: 100%;
-          min-height: 350px;
+          min-height: 280px; /* Reduzido de 350px para mobile */
         }
         
         .bottom-right {
           width: 100%;
-          min-height: 350px;
+          min-height: 200px; /* Reduzido de 350px para mobile */
+        }
+        
+        @media (min-width: 640px) {
+          .bottom-left {
+            min-height: 320px;
+          }
+          
+          .bottom-right {
+            min-height: 280px;
+          }
         }
         
         @media (min-width: 1024px) {
+          .top-section {
+            min-height: 180px;
+          }
+          
           .bottom-left {
             width: calc(60% - 10px);
             float: left;
             margin-right: 20px;
+            min-height: 350px;
           }
           
           .bottom-right {
             width: calc(40% - 10px);
             float: right;
+            min-height: 350px;
           }
         }
         
@@ -438,41 +471,41 @@ Seu coração apaixonado ❤️`;
             transform: translate3d(0px, 130vh, 0) scale(1);
             opacity: 0.7;
           }
-          5% {
+          3% {
             opacity: 1;
-            transform: translate3d(2px, 120vh, 0) scale(1);
+            transform: translate3d(1px, 125vh, 0) scale(1);
           }
-          15% {
-            transform: translate3d(-3px, 100vh, 0) scale(0.98);
+          10% {
+            transform: translate3d(-2px, 110vh, 0) scale(0.99);
           }
-          25% {
-            transform: translate3d(5px, 80vh, 0) scale(0.96);
+          20% {
+            transform: translate3d(3px, 90vh, 0) scale(0.97);
           }
-          35% {
-            transform: translate3d(-4px, 60vh, 0) scale(0.94);
+          30% {
+            transform: translate3d(-2px, 70vh, 0) scale(0.95);
           }
-          45% {
-            transform: translate3d(6px, 40vh, 0) scale(0.92);
+          40% {
+            transform: translate3d(4px, 50vh, 0) scale(0.93);
           }
-          55% {
-            transform: translate3d(-2px, 20vh, 0) scale(0.91);
+          50% {
+            transform: translate3d(-1px, 30vh, 0) scale(0.92);
           }
-          65% {
-            transform: translate3d(4px, 0vh, 0) scale(0.9);
+          60% {
+            transform: translate3d(3px, 10vh, 0) scale(0.91);
           }
-          75% {
-            transform: translate3d(-3px, -20vh, 0) scale(0.89);
+          70% {
+            transform: translate3d(-2px, -10vh, 0) scale(0.90);
           }
-          85% {
-            transform: translate3d(2px, -30vh, 0) scale(0.88);
+          80% {
+            transform: translate3d(1px, -25vh, 0) scale(0.88);
             opacity: 1;
           }
-          95% {
-            transform: translate3d(-1px, -40vh, 0) scale(0.75);
-            opacity: 0.4;
+          90% {
+            transform: translate3d(-1px, -35vh, 0) scale(0.82);
+            opacity: 0.6;
           }
           100% {
-            transform: translate3d(1px, -50vh, 0) scale(0.7);
+            transform: translate3d(1px, -45vh, 0) scale(0.75);
             opacity: 0;
           }
         }
@@ -701,24 +734,69 @@ Seu coração apaixonado ❤️`;
           }
         }
         
+        /* Otimizações gerais para mobile */
         .unlock-screen {
           background: rgba(45, 27, 0, 0.8);
           backdrop-filter: blur(10px);
           width: 100vw;
           height: 100vh;
+          min-height: 600px; /* Altura mínima para mobile */
           margin: 0;
           padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         
         .unlock-container {
           animation: slideUp 1s ease-out;
           width: 100%;
           height: 100%;
+          max-height: 100vh;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 2rem 1rem;
+          padding: 1rem;
+          overflow-y: auto;
+        }
+        
+        /* Ajustes para telas muito pequenas */
+        @media (max-height: 600px) {
+          .unlock-container {
+            padding: 0.5rem;
+            justify-content: flex-start;
+          }
+          
+          .top-section {
+            min-height: 80px;
+            margin-bottom: 10px;
+          }
+          
+          .bottom-left {
+            min-height: 200px;
+          }
+          
+          .bottom-right {
+            min-height: 140px;
+          }
+        }
+        
+        /* Otimização para iPhone SE e telas muito pequenas */
+        @media (max-height: 568px) {
+          .unlock-screen {
+            min-height: unset;
+          }
+          
+          .unlock-container {
+            padding: 0.25rem;
+            gap: 0.5rem;
+          }
+          
+          .top-section {
+            min-height: 60px;
+            margin-bottom: 5px;
+          }
         }
         
         .unlock-success {
@@ -971,7 +1049,7 @@ Seu coração apaixonado ❤️`;
         .letter-modal-backdrop {
           position: fixed !important;
           top: 0 !important;
-          left: 0 !important;
+          left: 0 !important; 
           right: 0 !important;
           bottom: 0 !important;
           z-index: 9999 !important;
@@ -1116,22 +1194,22 @@ Seu coração apaixonado ❤️`;
             </div>
           )}
           
-          {/* Partículas animadas (só durante o desbloqueio) */}
+          {/* Partículas animadas (só durante o desbloqueio) - Otimizado para mobile */}
           {!isUnlocking && (
             <>
               {/* 💖 CORAÇÕES CAINDO DO TOPO DA PÁGINA */}
               <div className="fixed inset-0 pointer-events-none z-16 overflow-hidden">
-                {Array.from({ length: 25 }, (_, i) => (
+                {Array.from({ length: 15 }, (_, i) => ( // Reduzido de 25 para 15
                   <div
                     key={`falling-heart-${i}`}
                     className="absolute floating-particle"
                     style={{
-                      left: `${i * 4}%`,
+                      left: `${i * 6}%`, // Ajustado para espaçar melhor
                       top: '0%',
                       fontSize: `${8 + (i % 4) * 3}px`,
                       color: i % 3 === 0 ? '#f472b6' : i % 3 === 1 ? '#ec4899' : '#be185d',
                       animation: `fallDown ${6 + (i % 3) * 2}s linear infinite`,
-                      animationDelay: `${-i * 0.3}s`,
+                      animationDelay: `${-i * 0.4}s`, // Mais espaçado
                       willChange: 'transform',
                       opacity: 0.7 + (i % 3) * 0.1
                     }}
@@ -1143,15 +1221,15 @@ Seu coração apaixonado ❤️`;
 
               {/* 💕 CORAÇÕES FLUTUANTES ROMÂNTICOS */}
               <div className="fixed inset-0 pointer-events-none z-15 overflow-hidden">
-                {Array.from({ length: 20 }, (_, i) => (
+                {Array.from({ length: 12 }, (_, i) => ( // Reduzido de 20 para 12
                   <div
                     key={`floating-heart-${i}`}
                     className="absolute text-pink-300 floating-particle"
                     style={{
-                      left: `${i * 5}%`,
+                      left: `${i * 8}%`, // Mais espaçado
                       fontSize: `${10 + (i % 4) * 3}px`,
                       animation: `floatingHearts ${8 + (i % 3) * 2}s linear infinite`,
-                      animationDelay: `${-i * 0.4}s`,
+                      animationDelay: `${-i * 0.5}s`,
                       willChange: 'transform',
                       opacity: 0.7 + (i % 3) * 0.1
                     }}
@@ -1163,15 +1241,15 @@ Seu coração apaixonado ❤️`;
 
               {/* 🌹 PÉTALAS DE ROSA CAINDO */}
               <div className="fixed inset-0 pointer-events-none z-14 overflow-hidden">
-                {Array.from({ length: 25 }, (_, i) => (
+                {Array.from({ length: 15 }, (_, i) => ( // Reduzido de 25 para 15
                   <div
                     key={`petal-${i}`}
                     className="absolute text-pink-200 floating-particle"
                     style={{
-                      left: `${i * 4}%`,
+                      left: `${i * 6}%`,
                       fontSize: `${5 + (i % 3) * 2}px`,
                       animation: `petalsDown ${6 + (i % 4) * 2}s linear infinite`,
-                      animationDelay: `${-i * 0.3}s`,
+                      animationDelay: `${-i * 0.4}s`,
                       willChange: 'transform',
                       opacity: 0.4 + (i % 2) * 0.2
                     }}
@@ -1183,12 +1261,12 @@ Seu coração apaixonado ❤️`;
 
               {/* ✨ PARTÍCULAS DOURADAS BRILHANTES */}
               <div className="fixed inset-0 pointer-events-none z-13 overflow-hidden">
-                {Array.from({ length: 30 }, (_, i) => (
+                {Array.from({ length: 20 }, (_, i) => ( // Reduzido de 30 para 20
                   <div
                     key={`sparkle-${i}`}
                     className="absolute text-yellow-300 floating-particle"
                     style={{
-                      left: `${i * 3.3}%`,
+                      left: `${i * 5}%`, // Mais espaçado
                       top: `${(i % 8) * 12.5}%`,
                       fontSize: `${3 + (i % 3) * 2}px`,
                       animation: `sparkle ${2 + (i % 3) * 1}s ease-in-out infinite`,
@@ -1204,20 +1282,20 @@ Seu coração apaixonado ❤️`;
             </>
           )}
           
-          <div className="unlock-container max-w-6xl w-full h-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 relative z-20">
+          <div className="unlock-container max-w-6xl w-full h-full px-3 sm:px-6 lg:px-8 py-2 sm:py-6 relative z-20">
             
-            {/* SEÇÃO SUPERIOR - TÍTULO E INSTRUÇÕES */}
+            {/* SEÇÃO SUPERIOR - TÍTULO E INSTRUÇÕES - Otimizada para mobile */}
             {!isUnlocking && (
-              <div className="top-section mb-6">
-                <div className="text-center h-full flex flex-col justify-center space-y-4">
-                  <div className="text-5xl sm:text-6xl lg:text-7xl animate-pulse" style={{animationDuration: '3s', animationDelay: '-1.5s'}}>💖</div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-pink-300 leading-tight" style={{ fontFamily: 'cursive' }}>
+              <div className="top-section mb-3 sm:mb-6">
+                <div className="text-center h-full flex flex-col justify-center space-y-2 sm:space-y-4">
+                  <div className="text-3xl sm:text-5xl lg:text-7xl animate-pulse" style={{animationDuration: '3s', animationDelay: '-1.5s'}}>💖</div>
+                  <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold text-pink-300 leading-tight" style={{ fontFamily: 'cursive' }}>
                     Nosso Momento Mágico
                   </h1>
-                  <p className="text-pink-200 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
+                  <p className="text-pink-200 text-xs sm:text-sm md:text-lg lg:text-xl leading-relaxed">
                     Digite a data que marcou o início da nossa história de amor
                   </p>
-                  <p className="text-pink-100 text-xs sm:text-sm opacity-75 italic">
+                  <p className="text-pink-100 text-xs opacity-75 italic">
                     💕 (Formato: DDMMAA) 💕
                   </p>
                   <div className="text-yellow-300 text-xs sm:text-sm lg:text-base opacity-80">
@@ -1228,19 +1306,15 @@ Seu coração apaixonado ❤️`;
             )}
             
             {!isUnlocking && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center justify-items-center w-full max-w-6xl mx-auto">
-              
-              {/* SEÇÃO INFERIOR ESQUERDA - PAINEL DE SENHA */}
-              <div className="bottom-left order-2 lg:order-1 flex flex-col justify-center w-full max-w-md mx-auto lg:max-w-none">
-                <div className="h-full flex flex-col justify-center space-y-6">
-                  
-                  {/* DISPLAY DA SENHA */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 xl:gap-16 items-center justify-items-center w-full max-w-6xl mx-auto">           
+              <div className="bottom-left order-2 lg:order-1 flex flex-col justify-center w-full max-w-xs sm:max-w-md mx-auto lg:max-w-none">
+                <div className="h-full flex flex-col justify-center space-y-3 sm:space-y-6">
                   <div className="flex justify-center">
-                    <div className="flex space-x-3 sm:space-x-4 lg:space-x-5">
+                    <div className="flex space-x-2 sm:space-x-3 lg:space-x-5">
                       {[...Array(6)].map((_, i) => (
                         <div
                           key={i}
-                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full border-2 sm:border-3 border-pink-300 password-dot ${
+                          className={`w-5 h-5 sm:w-6 sm:h-6 lg:w-10 lg:h-10 rounded-full border-2 border-pink-300 password-dot ${
                             i < password.length ? 'filled' : ''
                           } ${showError ? 'error-display' : ''}`}
                           style={{
@@ -1255,13 +1329,13 @@ Seu coração apaixonado ❤️`;
 
                   {/* MENSAGEM DE ERRO */}
                   {showError && (
-                    <div className="text-center space-y-2">
-                      <div className="text-2xl lg:text-3xl animate-bounce">💔</div>
+                    <div className="text-center space-y-1 sm:space-y-2">
+                      <div className="text-xl sm:text-2xl lg:text-3xl animate-bounce">💔</div>
                       <div className="space-y-1">
-                        <p className="text-red-300 text-base sm:text-lg lg:text-xl font-bold error-display" style={{ fontFamily: 'cursive' }}>
+                        <p className="text-red-300 text-sm sm:text-base lg:text-xl font-bold error-display" style={{ fontFamily: 'cursive' }}>
                           Ops! Essa não é nossa data especial...
                         </p>
-                        <p className="text-red-200 text-xs sm:text-sm lg:text-base opacity-80">
+                        <p className="text-red-200 text-xs lg:text-base opacity-80">
                           Tente novamente, meu amor 💕
                         </p>
                       </div>
@@ -1269,13 +1343,13 @@ Seu coração apaixonado ❤️`;
                   )}
 
                   {/* PAINEL NUMÉRICO */}
-                  <div className="max-w-xs sm:max-w-sm mx-auto space-y-4 sm:space-y-5">
-                    <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                  <div className="max-w-[240px] sm:max-w-xs mx-auto space-y-2 sm:space-y-4">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
                         <button
                           key={num}
                           onClick={() => addDigit(num.toString())}
-                          className="number-btn w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 hover:text-gray-900 touch-manipulation relative overflow-hidden transition-all duration-300 transform hover:scale-105"
+                          className="number-btn w-12 h-12 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-lg sm:rounded-xl text-base sm:text-lg lg:text-2xl font-bold text-gray-800 hover:text-gray-900 touch-manipulation relative overflow-hidden transition-all duration-300 transform hover:scale-105"
                           style={{
                             background: 'linear-gradient(135deg, #FFB6C1, #FFE4E1)',
                             border: '2px solid #FF69B4',
@@ -1289,11 +1363,11 @@ Seu coração apaixonado ❤️`;
                       ))}
                     </div>
                     
-                    <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
                       <div></div>
                       <button
                         onClick={() => addDigit('0')}
-                        className="number-btn w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 hover:text-gray-900 touch-manipulation relative overflow-hidden transition-all duration-300 transform hover:scale-105"
+                        className="number-btn w-12 h-12 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-lg sm:rounded-xl text-base sm:text-lg lg:text-2xl font-bold text-gray-800 hover:text-gray-900 touch-manipulation relative overflow-hidden transition-all duration-300 transform hover:scale-105"
                         style={{
                           background: 'linear-gradient(135deg, #FFB6C1, #FFE4E1)',
                           border: '2px solid #FF69B4',
@@ -1306,7 +1380,7 @@ Seu coração apaixonado ❤️`;
                       </button>
                       <button
                         onClick={removeDigit}
-                        className="number-btn w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl text-base sm:text-lg lg:text-xl font-bold text-gray-800 hover:text-gray-900 flex items-center justify-center touch-manipulation relative overflow-hidden transition-all duration-300 transform hover:scale-105"
+                        className="number-btn w-12 h-12 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-xl font-bold text-gray-800 hover:text-gray-900 flex items-center justify-center touch-manipulation relative overflow-hidden transition-all duration-300 transform hover:scale-105"
                         style={{
                           background: 'linear-gradient(135deg, #FFB6C1, #FFE4E1)',
                           border: '2px solid #FF69B4',
@@ -1326,7 +1400,7 @@ Seu coração apaixonado ❤️`;
               <div className="bottom-right order-1 lg:order-2 flex justify-center items-center w-full">
                 <div className="relative">
                   <div 
-                    className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 xl:w-88 xl:h-88 rounded-2xl sm:rounded-3xl lg:rounded-[2rem] overflow-hidden shadow-2xl"
+                    className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-80 lg:h-80 xl:w-88 xl:h-88 rounded-xl sm:rounded-2xl lg:rounded-[2rem] overflow-hidden shadow-2xl"
                     style={{
                       border: '3px solid #FF69B4',
                       boxShadow: '0 0 20px rgba(255, 182, 193, 0.5), 0 0 40px rgba(255, 105, 180, 0.3)',
@@ -1342,30 +1416,30 @@ Seu coração apaixonado ❤️`;
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-pink-300 via-rose-400 to-red-400 flex items-center justify-center relative overflow-hidden">
                         <div className="absolute inset-0 opacity-20">
-                          <div className="absolute top-4 left-4 text-2xl animate-pulse" style={{animationDuration: '4s'}}>💕</div>
-                          <div className="absolute top-8 right-6 text-xl animate-pulse" style={{animationDelay: '1s', animationDuration: '5s'}}>❤️</div>
-                          <div className="absolute bottom-6 left-8 text-lg animate-pulse" style={{animationDelay: '2s', animationDuration: '6s'}}>💖</div>
-                          <div className="absolute bottom-4 right-4 text-2xl animate-pulse" style={{animationDelay: '3s', animationDuration: '4s'}}>💝</div>
+                          <div className="absolute top-2 left-2 sm:top-4 sm:left-4 text-lg sm:text-2xl animate-pulse" style={{animationDuration: '4s'}}>💕</div>
+                          <div className="absolute top-4 right-3 sm:top-8 sm:right-6 text-base sm:text-xl animate-pulse" style={{animationDelay: '1s', animationDuration: '5s'}}>❤️</div>
+                          <div className="absolute bottom-3 left-4 sm:bottom-6 sm:left-8 text-sm sm:text-lg animate-pulse" style={{animationDelay: '2s', animationDuration: '6s'}}>💖</div>
+                          <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 text-lg sm:text-2xl animate-pulse" style={{animationDelay: '3s', animationDuration: '4s'}}>💝</div>
                         </div>
                         
-                        <div className="text-white text-center p-4 sm:p-6 lg:p-8 relative z-10">
-                          <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-3 sm:mb-4 lg:mb-6 animate-pulse">💕</div>
-                          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3" style={{ fontFamily: 'cursive' }}>Nossa Foto Especial</div>
-                          <div className="text-sm sm:text-base lg:text-lg opacity-90 mb-2">Adicione uma foto que representa nosso amor</div>
-                          <div className="text-xs sm:text-sm opacity-70 mt-2">✨ Edite config.unlockPhoto ✨</div>
+                        <div className="text-white text-center p-2 sm:p-4 lg:p-8 relative z-10">
+                          <div className="text-2xl sm:text-4xl md:text-5xl lg:text-8xl mb-1 sm:mb-3 lg:mb-6 animate-pulse">💕</div>
+                          <div className="text-xs sm:text-base md:text-lg lg:text-3xl font-bold mb-1 sm:mb-2" style={{ fontFamily: 'cursive' }}>Nossa Foto Especial</div>
+                          <div className="text-xs sm:text-sm lg:text-lg opacity-90 mb-1 sm:mb-2">Adicione uma foto que representa nosso amor</div>
+                          <div className="text-xs opacity-70 mt-1 sm:mt-2">✨ Edite config.unlockPhoto ✨</div>
                         </div>
                       </div>
                     )}
                   </div>
                   
                   {/* EFEITO DE BRILHO ROMÂNTICO */}
-                  <div className="absolute inset-0 rounded-2xl sm:rounded-3xl lg:rounded-[2rem] bg-gradient-to-t from-transparent via-pink-200/15 to-transparent animate-pulse" style={{animationDuration: '5s', animationDelay: '-2.5s'}}></div>
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl lg:rounded-[2rem] bg-gradient-to-t from-transparent via-pink-200/15 to-transparent animate-pulse" style={{animationDuration: '5s', animationDelay: '-2.5s'}}></div>
                   
                   {/* CORAÇÕES FLUTUANTES AO REDOR DA FOTO */}
-                  <div className="absolute -top-3 -left-3 text-xl lg:text-2xl text-pink-300" style={{animation: 'heartPulse 7s ease-in-out infinite', animationDelay: '-3s'}}>💕</div>
-                  <div className="absolute -top-2 -right-4 text-lg lg:text-xl text-red-300" style={{animation: 'heartPulse 9s ease-in-out infinite', animationDelay: '-5s'}}>❤️</div>
-                  <div className="absolute -bottom-3 -left-4 text-lg lg:text-xl text-pink-400" style={{animation: 'heartPulse 8s ease-in-out infinite', animationDelay: '-2s'}}>💖</div>
-                  <div className="absolute -bottom-2 -right-3 text-xl lg:text-2xl text-rose-300" style={{animation: 'heartPulse 10s ease-in-out infinite', animationDelay: '-7s'}}>💝</div>
+                  <div className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 text-base sm:text-lg lg:text-2xl text-pink-300" style={{animation: 'heartPulse 7s ease-in-out infinite', animationDelay: '-3s'}}>💕</div>
+                  <div className="absolute -top-1 -right-2 sm:-top-2 sm:-right-4 text-sm sm:text-base lg:text-xl text-red-300" style={{animation: 'heartPulse 9s ease-in-out infinite', animationDelay: '-5s'}}>❤️</div>
+                  <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-4 text-sm sm:text-base lg:text-xl text-pink-400" style={{animation: 'heartPulse 8s ease-in-out infinite', animationDelay: '-2s'}}>💖</div>
+                  <div className="absolute -bottom-1 -right-2 sm:-bottom-2 sm:-right-3 text-base sm:text-lg lg:text-2xl text-rose-300" style={{animation: 'heartPulse 10s ease-in-out infinite', animationDelay: '-7s'}}>💝</div>
                 </div>
               </div>
             </div>
@@ -1373,7 +1447,7 @@ Seu coração apaixonado ❤️`;
             
             {/* MENSAGEM ROMÂNTICA NO RODAPÉ */}
             {!isUnlocking && (
-              <div className="text-center mt-8 lg:mt-12 px-4">
+              <div className="text-center mt-4 sm:mt-6 lg:mt-12 px-4">
                 <p className="text-pink-200 text-xs sm:text-sm lg:text-base italic opacity-80 max-w-2xl mx-auto leading-relaxed">
                   "O amor não se mede em tempo, mas em momentos que fazem o tempo parar" 💕
                 </p>
