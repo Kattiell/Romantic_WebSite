@@ -89,14 +89,12 @@ const FloatingLantern: React.FC<LanternProps> = ({ index, left, delay, size, dur
 };
 
 const RomanticWebsite: React.FC = () => {
-  // Estados básicos
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
   const [isUnlocking, setIsUnlocking] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
   const [showMainContent, setShowMainContent] = useState<boolean>(false);
   
-  // Estados para UI
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [isLetterModalOpen, setIsLetterModalOpen] = useState<boolean>(false);
@@ -104,7 +102,6 @@ const RomanticWebsite: React.FC = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isCandleLit, setIsCandleLit] = useState<boolean>(true);
   
-  // Estados para contadores de tempo
   const [timeSinceBirth, setTimeSinceBirth] = useState<TimeCount>({
     days: 0,
     hours: 0,
@@ -119,10 +116,8 @@ const RomanticWebsite: React.FC = () => {
     seconds: 0
   });
 
-  // Referência para áudio
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Configuração principal
   const config: Config = {
     birthDate: new Date('2002-09-21T10:30:00'),
     relationshipStartDate: new Date('2024-09-17T00:00:00'),
@@ -171,6 +166,12 @@ Seu coração apaixonado ❤️`;
       image: "11.jpeg"
     },
     {
+      title: "Nosso Amor",
+      caption: "Cada momento ao seu lado fortalece o que somos juntos — um amor verdadeiro, cheio de cumplicidade e carinho que só nós entendemos.",
+      date: "18 de Setembro, 2024",
+      image: "25.jpg"
+    },
+    {
       title: "Primeiro Cinema",
       caption: "A magia do filme refletida no brilho dos seus olhos fez cada segundo da surpresa valer a pena.",
       date: "20 de Setembro, 2024",
@@ -181,6 +182,12 @@ Seu coração apaixonado ❤️`;
       caption: "Entre cenas e sorrisos, esse beijo foi o verdadeiro clímax da noite — como se o filme tivesse sido escrito só pra nós.",
       date: "23 de Setembro, 2024",
       image: "4.jpeg"
+    },
+    {
+      title: "Segundo Buquê",
+      caption: "Se o primeiro foi o início, este é a confirmação. Cada flor carrega um pedaço do que construímos juntos — carinho, cuidado e a promessa de continuar florescendo ao seu lado.",
+      date: "01 de Fevereiro, 2025",
+      image: "22.jpeg"
     },
   ];
 
@@ -215,11 +222,22 @@ Seu coração apaixonado ❤️`;
       caption: "Nossa história é feita de detalhes simples que se tornam eternos",
       image: "20.jpeg"
     },
-            {
+    {
       title: "Memória 7",
       caption: "Cada novo dia contigo é um capítulo lindo do nosso conto de amor",
       image: "21.jpeg"
-    }
+    },
+     {
+      title: "Memória 8",
+      caption: "Você transforma até o silêncio em lembrança boa",
+      image: "23.jpg"
+    },
+         {
+      title: "Memória 9",
+      caption: "Tem dias que nem precisam de nada — só de você pra se tornarem inesquecíveis",
+      image: "24.jpg"
+    },
+    
   ];
 
   const addDigit = (digit: string) => {
@@ -308,12 +326,10 @@ Seu coração apaixonado ❤️`;
     document.body.classList.remove('modal-open');
   };
 
-  // Efeito para calcular os tempos
   useEffect(() => {
     const calculateTimes = () => {
       const now = new Date();
       
-      // Calcula tempo desde o nascimento
       if (config.birthDate && config.birthDate instanceof Date && !isNaN(config.birthDate.getTime())) {
         const birthDiff = now.getTime() - config.birthDate.getTime();
         if (birthDiff >= 0) {
@@ -331,7 +347,6 @@ Seu coração apaixonado ❤️`;
         }
       }
 
-      // Calcula tempo desde o início do relacionamento
       if (config.relationshipStartDate && config.relationshipStartDate instanceof Date && !isNaN(config.relationshipStartDate.getTime())) {
         const relationshipDiff = now.getTime() - config.relationshipStartDate.getTime();
         if (relationshipDiff >= 0) {
@@ -1132,7 +1147,6 @@ Seu coração apaixonado ❤️`;
         }
       `}</style>
 
-      {/* 🎵 ÁUDIO DE FUNDO */}
       {config.backgroundMusic && (
         <audio 
           ref={audioRef} 
@@ -1144,7 +1158,6 @@ Seu coração apaixonado ❤️`;
         </audio>
       )}
 
-      {/* 🖼️ IMAGEM DE FUNDO GLOBAL */}
       {config.backgroundImage && (
         <div 
           className="fixed inset-0 bg-cover bg-center bg-no-repeat z-0 w-full h-full"
@@ -1156,13 +1169,11 @@ Seu coração apaixonado ❤️`;
         />
       )}
 
-      {/* Fundo gradiente escuro */}
       {!config.backgroundImage && (
         <div className="fixed inset-0 z-0 w-full h-full" 
              style={{ background: 'radial-gradient(ellipse at bottom, #1f2937 0%, #111827 50%, #000000 100%)', margin: 0, padding: 0 }} />
       )}
 
-      {/* Overlay escuro sobre a imagem de fundo */}
       {config.backgroundImage && (
         <div 
           className="fixed inset-0 bg-black z-1 w-full h-full"
@@ -1170,11 +1181,9 @@ Seu coração apaixonado ❤️`;
         ></div>
       )}
 
-      {/* 🔐 TELA DE DESBLOQUEIO */}
       {!isUnlocked && (
         <div className={`fixed inset-0 z-10 unlock-screen flex items-center justify-center w-full h-full ${isUnlocking ? 'unlock-success' : ''}`} style={{ margin: 0, padding: 0 }}>
           
-          {/* ✨ MENSAGEM SIMPLES DURANTE DESBLOQUEIO */}
           {isUnlocking && (
             <div className="fixed inset-0 flex items-center justify-center z-30 pointer-events-none">
               <div className="text-center space-y-3 sm:space-y-4">
@@ -1194,22 +1203,20 @@ Seu coração apaixonado ❤️`;
             </div>
           )}
           
-          {/* Partículas animadas (só durante o desbloqueio) - Otimizado para mobile */}
           {!isUnlocking && (
             <>
-              {/* 💖 CORAÇÕES CAINDO DO TOPO DA PÁGINA */}
               <div className="fixed inset-0 pointer-events-none z-16 overflow-hidden">
-                {Array.from({ length: 15 }, (_, i) => ( // Reduzido de 25 para 15
+                {Array.from({ length: 15 }, (_, i) => ( 
                   <div
                     key={`falling-heart-${i}`}
                     className="absolute floating-particle"
                     style={{
-                      left: `${i * 6}%`, // Ajustado para espaçar melhor
+                      left: `${i * 6}%`, 
                       top: '0%',
                       fontSize: `${8 + (i % 4) * 3}px`,
                       color: i % 3 === 0 ? '#f472b6' : i % 3 === 1 ? '#ec4899' : '#be185d',
                       animation: `fallDown ${6 + (i % 3) * 2}s linear infinite`,
-                      animationDelay: `${-i * 0.4}s`, // Mais espaçado
+                      animationDelay: `${-i * 0.4}s`, 
                       willChange: 'transform',
                       opacity: 0.7 + (i % 3) * 0.1
                     }}
@@ -1218,15 +1225,13 @@ Seu coração apaixonado ❤️`;
                   </div>
                 ))}
               </div>
-
-              {/* 💕 CORAÇÕES FLUTUANTES ROMÂNTICOS */}
               <div className="fixed inset-0 pointer-events-none z-15 overflow-hidden">
-                {Array.from({ length: 12 }, (_, i) => ( // Reduzido de 20 para 12
+                {Array.from({ length: 12 }, (_, i) => ( 
                   <div
                     key={`floating-heart-${i}`}
                     className="absolute text-pink-300 floating-particle"
                     style={{
-                      left: `${i * 8}%`, // Mais espaçado
+                      left: `${i * 8}%`, 
                       fontSize: `${10 + (i % 4) * 3}px`,
                       animation: `floatingHearts ${8 + (i % 3) * 2}s linear infinite`,
                       animationDelay: `${-i * 0.5}s`,
@@ -1239,9 +1244,8 @@ Seu coração apaixonado ❤️`;
                 ))}
               </div>
 
-              {/* 🌹 PÉTALAS DE ROSA CAINDO */}
               <div className="fixed inset-0 pointer-events-none z-14 overflow-hidden">
-                {Array.from({ length: 15 }, (_, i) => ( // Reduzido de 25 para 15
+                {Array.from({ length: 15 }, (_, i) => ( 
                   <div
                     key={`petal-${i}`}
                     className="absolute text-pink-200 floating-particle"
@@ -1259,14 +1263,13 @@ Seu coração apaixonado ❤️`;
                 ))}
               </div>
 
-              {/* ✨ PARTÍCULAS DOURADAS BRILHANTES */}
               <div className="fixed inset-0 pointer-events-none z-13 overflow-hidden">
-                {Array.from({ length: 20 }, (_, i) => ( // Reduzido de 30 para 20
+                {Array.from({ length: 20 }, (_, i) => (
                   <div
                     key={`sparkle-${i}`}
                     className="absolute text-yellow-300 floating-particle"
                     style={{
-                      left: `${i * 5}%`, // Mais espaçado
+                      left: `${i * 5}%`,
                       top: `${(i % 8) * 12.5}%`,
                       fontSize: `${3 + (i % 3) * 2}px`,
                       animation: `sparkle ${2 + (i % 3) * 1}s ease-in-out infinite`,
@@ -1282,9 +1285,7 @@ Seu coração apaixonado ❤️`;
             </>
           )}
           
-          <div className="unlock-container max-w-6xl w-full h-full px-3 sm:px-6 lg:px-8 py-2 sm:py-6 relative z-20">
-            
-            {/* SEÇÃO SUPERIOR - TÍTULO E INSTRUÇÕES - Otimizada para mobile */}
+          <div className="unlock-container max-w-6xl w-full h-full px-3 sm:px-6 lg:px-8 py-2 sm:py-6 relative z-20">           
             {!isUnlocking && (
               <div className="top-section mb-3 sm:mb-6">
                 <div className="text-center h-full flex flex-col justify-center space-y-2 sm:space-y-4">
@@ -1327,7 +1328,6 @@ Seu coração apaixonado ❤️`;
                     </div>
                   </div>
 
-                  {/* MENSAGEM DE ERRO */}
                   {showError && (
                     <div className="text-center space-y-1 sm:space-y-2">
                       <div className="text-xl sm:text-2xl lg:text-3xl animate-bounce">💔</div>
@@ -1342,7 +1342,6 @@ Seu coração apaixonado ❤️`;
                     </div>
                   )}
 
-                  {/* PAINEL NUMÉRICO */}
                   <div className="max-w-[240px] sm:max-w-xs mx-auto space-y-2 sm:space-y-4">
                     <div className="grid grid-cols-3 gap-2 sm:gap-3">
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
