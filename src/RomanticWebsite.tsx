@@ -1254,14 +1254,13 @@ Seu coração apaixonado ❤️`;
             backgroundImage: `url('${config.backgroundImage.startsWith('http') ? config.backgroundImage : `/${config.backgroundImage}`}')`,
             margin: 0,
             padding: 0,
-            backgroundAttachment: 'fixed',
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundColor: '#000000',
-            minHeight: '120vh',
-            top: '-10vh',
-            bottom: '-10vh'
+            minHeight: '100vh',
+            width: '100vw',
+            height: '100vh'
           }}
         />
       )}
@@ -1273,9 +1272,7 @@ Seu coração apaixonado ❤️`;
             background: 'radial-gradient(ellipse at bottom, #1f2937 0%, #111827 50%, #000000 100%)', 
             margin: 0, 
             padding: 0,
-            minHeight: '120vh',
-            top: '-10vh',
-            bottom: '-10vh',
+            minHeight: '100vh',
             backgroundColor: '#000000'
           }} 
         />
