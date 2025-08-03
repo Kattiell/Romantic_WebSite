@@ -135,8 +135,8 @@ const RomanticWebsite: React.FC = () => {
       left: Math.random() * 100,
       delay: -(Math.random() * 35 + 15),
       size: 10 + Math.random() * 12,
-      duration: 18 + Math.random() * 12, // Mais lento: era 10 + Math.random() * 8
-      speedVariation: 0.5 + Math.random() * 0.4 // Mais lento: era 0.7 + Math.random() * 0.6
+      duration: 18 + Math.random() * 12,
+      speedVariation: 0.5 + Math.random() * 0.4
     }));
   };
 
@@ -316,14 +316,12 @@ Seu coração apaixonado ❤️`;
     setIsLetterModalOpen(true);
     setTypedText('');
     setIsTyping(true);
-    document.body.classList.add('modal-open');
   };
 
   const closeLetterModal = () => {
     setIsLetterModalOpen(false);
     setTypedText('');
     setIsTyping(false);
-    document.body.classList.remove('modal-open');
   };
 
   useEffect(() => {
@@ -396,39 +394,41 @@ Seu coração apaixonado ❤️`;
 
     return () => {
       clearInterval(slideInterval);
-      document.body.classList.remove('modal-open');
     };
   }, [photoSlides.length]);
 
   return (
-    <div className="min-h-screen relative overflow-hidden w-full bg-gray-900">
+    <div className="min-h-screen relative w-full bg-gray-900">
       <style>{`
-        /* Estilos de animação e layout */
-        html, body {
-          margin: 0;
-          padding: 0;
-          overflow-x: hidden;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar,
-        *::-webkit-scrollbar {
-          width: 0;
-          height: 0;
-          display: none;
-        }
-        
+        /* Estilos de animação e layout - SCROLL CORRIGIDO */
         * {
           box-sizing: border-box;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        body {
+          margin: 0;
+          padding: 0;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: contain;
+        }
+        
+        /* Scroll suave para dispositivos móveis */
+        .main-container {
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
+          overscroll-behavior: contain;
         }
         
         /* Layout espacial sem bordas visuais - Otimizado para mobile */
         .top-section {
           width: 100%;
-          min-height: 120px; /* Reduzido de 180px para mobile */
-          margin-bottom: 15px; /* Reduzido de 20px */
+          min-height: 120px;
+          margin-bottom: 15px;
         }
         
         @media (min-width: 640px) {
@@ -440,12 +440,12 @@ Seu coração apaixonado ❤️`;
         
         .bottom-left {
           width: 100%;
-          min-height: 280px; /* Reduzido de 350px para mobile */
+          min-height: 280px;
         }
         
         .bottom-right {
           width: 100%;
-          min-height: 200px; /* Reduzido de 350px para mobile */
+          min-height: 200px;
         }
         
         @media (min-width: 640px) {
@@ -749,31 +749,34 @@ Seu coração apaixonado ❤️`;
           }
         }
         
-        /* Otimizações gerais para mobile */
+        /* Otimizações gerais para mobile - SCROLL MELHORADO */
         .unlock-screen {
           background: rgba(45, 27, 0, 0.8);
           backdrop-filter: blur(10px);
           width: 100vw;
           height: 100vh;
-          min-height: 600px; /* Altura mínima para mobile */
+          min-height: 600px;
           margin: 0;
           padding: 0;
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
         
         .unlock-container {
           animation: slideUp 1s ease-out;
           width: 100%;
-          height: 100%;
-          max-height: 100vh;
+          height: auto;
+          min-height: 100vh;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           padding: 1rem;
           overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
         
         /* Ajustes para telas muito pequenas */
@@ -1060,7 +1063,7 @@ Seu coração apaixonado ❤️`;
           color: #d50000;
         }
 
-        /* Estilos para o modal da carta */
+        /* Estilos para o modal da carta - SCROLL MELHORADO */
         .letter-modal-backdrop {
           position: fixed !important;
           top: 0 !important;
@@ -1070,20 +1073,17 @@ Seu coração apaixonado ❤️`;
           z-index: 9999 !important;
           background: rgba(0, 0, 0, 0.9) !important;
           backdrop-filter: blur(10px) !important;
+          overflow-y: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+          padding: 16px !important;
         }
 
         .letter-modal-content {
           position: relative !important;
           z-index: 10000 !important;
-          max-height: 90vh;
-          overflow-y: auto;
-        }
-
-        /* Previne scroll no body quando modal está aberto */
-        body.modal-open {
-          overflow: hidden !important;
-          position: fixed !important;
-          width: 100% !important;
+          max-height: none !important;
+          margin: auto !important;
+          overflow: visible !important;
         }
 
         /* Animações para os contadores de tempo */
@@ -1144,6 +1144,19 @@ Seu coração apaixonado ❤️`;
 
         .floating-emoji {
           animation: floatingEmoji 3s ease-in-out infinite;
+        }
+
+        /* Fix para scroll touch em iOS */
+        * {
+          -webkit-touch-callout: none;
+          -webkit-text-size-adjust: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        /* Melhor scroll para elementos com overflow */
+        .scrollable {
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: contain;
         }
       `}</style>
 
@@ -1285,7 +1298,7 @@ Seu coração apaixonado ❤️`;
             </>
           )}
           
-          <div className="unlock-container max-w-6xl w-full h-full px-3 sm:px-6 lg:px-8 py-2 sm:py-6 relative z-20">           
+          <div className="unlock-container max-w-6xl w-full h-full px-3 sm:px-6 lg:px-8 py-2 sm:py-6 relative z-20 scrollable">           
             {!isUnlocking && (
               <div className="top-section mb-3 sm:mb-6">
                 <div className="text-center h-full flex flex-col justify-center space-y-2 sm:space-y-4">
@@ -1458,7 +1471,7 @@ Seu coração apaixonado ❤️`;
 
       {/* 🌟 SITE PRINCIPAL */}
       {(isUnlocked || showMainContent) && (
-        <div className={`${showMainContent && !isUnlocked ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000 ease-out`}>
+        <div className={`main-container ${showMainContent && !isUnlocked ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000 ease-out`}>
           
           {/* 🏮 LANTERNAS FLUTUANTES */}
           <div className="fixed inset-0 pointer-events-none z-5 overflow-hidden">
@@ -1479,7 +1492,7 @@ Seu coração apaixonado ❤️`;
           <div className="fixed top-8 right-8 z-50">
             <button
               onClick={openLetterModal}
-              className="relative group transition-all duration-300 hover:scale-110"
+              className="relative group transition-all duration-300 hover:scale-110 touch-manipulation"
             >
               <Heart 
                 className="w-20 h-20 text-red-500 neon-heart fill-current" 
@@ -1496,7 +1509,7 @@ Seu coração apaixonado ❤️`;
           {/* Modal da Carta de Amor */}
           {isLetterModalOpen && (
             <div 
-              className="letter-modal-backdrop fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-lg p-4" 
+              className="letter-modal-backdrop fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-lg scrollable" 
               style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
               onClick={(e) => {
                 if (e.target === e.currentTarget) {
@@ -1504,10 +1517,10 @@ Seu coração apaixonado ❤️`;
                 }
               }}
             >
-              <div className="letter-modal-content bg-gradient-to-br from-pink-100 to-rose-200 max-w-2xl w-full p-8 rounded-2xl shadow-2xl relative border-2 border-red-400 z-[10000]">
+              <div className="letter-modal-content bg-gradient-to-br from-pink-100 to-rose-200 max-w-2xl w-full p-8 rounded-2xl shadow-2xl relative border-2 border-red-400 z-[10000] my-4">
                 <button
                   onClick={closeLetterModal}
-                  className="absolute top-4 right-4 text-red-600 hover:text-red-800 text-3xl font-bold z-[10001] transition-colors duration-200"
+                  className="absolute top-4 right-4 text-red-600 hover:text-red-800 text-3xl font-bold z-[10001] transition-colors duration-200 touch-manipulation"
                 >
                   ×
                 </button>
@@ -1535,7 +1548,7 @@ Seu coração apaixonado ❤️`;
           )}
 
           {/* Conteúdo principal */}
-          <div className="relative z-20 min-h-screen px-2 sm:px-4 py-4 sm:py-8">
+          <div className="relative z-20 min-h-screen px-2 sm:px-4 py-4 sm:py-8 scrollable">
             
             {/* Seção Hero */}
             <section 
