@@ -401,7 +401,6 @@ Seu coração apaixonado ❤️`;
     <div className="min-h-screen relative w-full bg-gray-900" style={{ 
       backgroundColor: '#000000', 
       overscrollBehavior: 'none',
-      WebkitOverscrollBehavior: 'none',
       minHeight: '100vh'
     }}>
       <style>{`
@@ -1214,6 +1213,26 @@ Seu coração apaixonado ❤️`;
           html, body {
             overscroll-behavior: none;
           }
+        }
+        
+        /* PROTEÇÃO EXTRA CONTRA FUNDO AZUL */
+        html {
+          background: #000000 !important;
+        }
+        
+        body {
+          background: #000000 !important;
+        }
+        
+        body::before {
+          content: '';
+          position: fixed;
+          top: -100vh;
+          left: 0;
+          right: 0;
+          height: 300vh;
+          background: #000000;
+          z-index: -1;
         }
       `}</style>
 
