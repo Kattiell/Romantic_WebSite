@@ -398,7 +398,12 @@ Seu coração apaixonado ❤️`;
   }, [photoSlides.length]);
 
   return (
-    <div className="min-h-screen relative w-full bg-gray-900">
+    <div className="min-h-screen relative w-full bg-gray-900" style={{ 
+      backgroundColor: '#000000', 
+      overscrollBehavior: 'none',
+      WebkitOverscrollBehavior: 'none',
+      minHeight: '100vh'
+    }}>
       <style>{`
         /* Estilos de animação e layout - SCROLL CORRIGIDO */
         * {
@@ -408,20 +413,41 @@ Seu coração apaixonado ❤️`;
         html {
           scroll-behavior: smooth;
           -webkit-overflow-scrolling: touch;
+          background-color: #000000;
+          overscroll-behavior: none;
+          height: 100%;
         }
         
         body {
           margin: 0;
           padding: 0;
           -webkit-overflow-scrolling: touch;
-          overscroll-behavior: contain;
+          overscroll-behavior: none;
+          background-color: #000000;
+          min-height: 100vh;
+          height: 100%;
         }
         
         /* Scroll suave para dispositivos móveis */
         .main-container {
           -webkit-overflow-scrolling: touch;
           scroll-behavior: smooth;
-          overscroll-behavior: contain;
+          overscroll-behavior: none;
+          background-color: #000000;
+          min-height: 100vh;
+        }
+        
+        /* Fix específico para prevenir fundo azul no mobile */
+        #__next, [data-reactroot] {
+          background-color: #000000 !important;
+          overscroll-behavior: none !important;
+        }
+        
+        /* Previne overscroll em iOS Safari */
+        .min-h-screen {
+          overscroll-behavior: none;
+          -webkit-overscroll-behavior: none;
+          background-color: #000000;
         }
         
         /* Layout espacial sem bordas visuais - Otimizado para mobile */
@@ -1146,7 +1172,7 @@ Seu coração apaixonado ❤️`;
           animation: floatingEmoji 3s ease-in-out infinite;
         }
 
-        /* Fix para scroll touch em iOS */
+        /* Fix para scroll touch em iOS - PREVINE FUNDO AZUL */
         * {
           -webkit-touch-callout: none;
           -webkit-text-size-adjust: none;
@@ -1156,7 +1182,38 @@ Seu coração apaixonado ❤️`;
         /* Melhor scroll para elementos com overflow */
         .scrollable {
           -webkit-overflow-scrolling: touch;
-          overscroll-behavior: contain;
+          overscroll-behavior: none;
+          -webkit-overscroll-behavior: none;
+        }
+        
+        /* Fix específico para iOS Safari - Previne bounce */
+        @supports (-webkit-overflow-scrolling: touch) {
+          html, body {
+            overscroll-behavior-y: none;
+            -webkit-overscroll-behavior-y: none;
+            position: fixed;
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+          }
+          
+          .main-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+          }
+        }
+        
+        /* Fallback para outros navegadores mobile */
+        @supports not (-webkit-overflow-scrolling: touch) {
+          html, body {
+            overscroll-behavior: none;
+          }
         }
       `}</style>
 
@@ -1177,14 +1234,32 @@ Seu coração apaixonado ❤️`;
           style={{
             backgroundImage: `url('${config.backgroundImage.startsWith('http') ? config.backgroundImage : `/${config.backgroundImage}`}')`,
             margin: 0,
-            padding: 0
+            padding: 0,
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: '#000000',
+            minHeight: '120vh',
+            top: '-10vh',
+            bottom: '-10vh'
           }}
         />
       )}
 
       {!config.backgroundImage && (
-        <div className="fixed inset-0 z-0 w-full h-full" 
-             style={{ background: 'radial-gradient(ellipse at bottom, #1f2937 0%, #111827 50%, #000000 100%)', margin: 0, padding: 0 }} />
+        <div 
+          className="fixed inset-0 z-0 w-full h-full" 
+          style={{ 
+            background: 'radial-gradient(ellipse at bottom, #1f2937 0%, #111827 50%, #000000 100%)', 
+            margin: 0, 
+            padding: 0,
+            minHeight: '120vh',
+            top: '-10vh',
+            bottom: '-10vh',
+            backgroundColor: '#000000'
+          }} 
+        />
       )}
 
       {config.backgroundImage && (
