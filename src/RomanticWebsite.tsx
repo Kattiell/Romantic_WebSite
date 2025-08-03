@@ -399,7 +399,6 @@ Seu coração apaixonado ❤️`;
 
   return (
     <div className="min-h-screen relative w-full bg-gray-900" style={{ 
-      backgroundColor: '#000000', 
       overscrollBehavior: 'none',
       minHeight: '100vh'
     }}>
@@ -412,7 +411,6 @@ Seu coração apaixonado ❤️`;
         html {
           scroll-behavior: smooth;
           -webkit-overflow-scrolling: touch;
-          background-color: #000000;
           overscroll-behavior: none;
           height: 100%;
         }
@@ -422,7 +420,6 @@ Seu coração apaixonado ❤️`;
           padding: 0;
           -webkit-overflow-scrolling: touch;
           overscroll-behavior: none;
-          background-color: #000000;
           min-height: 100vh;
           height: 100%;
         }
@@ -432,13 +429,11 @@ Seu coração apaixonado ❤️`;
           -webkit-overflow-scrolling: touch;
           scroll-behavior: smooth;
           overscroll-behavior: none;
-          background-color: #000000;
           min-height: 100vh;
         }
         
         /* Fix específico para prevenir fundo azul no mobile */
         #__next, [data-reactroot] {
-          background-color: #000000 !important;
           overscroll-behavior: none !important;
         }
         
@@ -446,7 +441,6 @@ Seu coração apaixonado ❤️`;
         .min-h-screen {
           overscroll-behavior: none;
           -webkit-overscroll-behavior: none;
-          background-color: #000000;
         }
         
         /* Layout espacial sem bordas visuais - Otimizado para mobile */
@@ -1215,15 +1209,7 @@ Seu coração apaixonado ❤️`;
           }
         }
         
-        /* PROTEÇÃO EXTRA CONTRA FUNDO AZUL */
-        html {
-          background: #000000 !important;
-        }
-        
-        body {
-          background: #000000 !important;
-        }
-        
+        /* Manter só as regras essenciais de overscroll sem forçar background */
         body::before {
           content: '';
           position: fixed;
@@ -1231,7 +1217,7 @@ Seu coração apaixonado ❤️`;
           left: 0;
           right: 0;
           height: 300vh;
-          background: #000000;
+          background: transparent;
           z-index: -1;
         }
       `}</style>
@@ -1257,7 +1243,6 @@ Seu coração apaixonado ❤️`;
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: '#000000',
             minHeight: '100vh',
             width: '100vw',
             height: '100vh'
@@ -1272,8 +1257,7 @@ Seu coração apaixonado ❤️`;
             background: 'radial-gradient(ellipse at bottom, #1f2937 0%, #111827 50%, #000000 100%)', 
             margin: 0, 
             padding: 0,
-            minHeight: '100vh',
-            backgroundColor: '#000000'
+            minHeight: '100vh'
           }} 
         />
       )}
