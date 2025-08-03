@@ -316,12 +316,20 @@ Seu coração apaixonado ❤️`;
     setIsLetterModalOpen(true);
     setTypedText('');
     setIsTyping(true);
+    // Bloqueia scroll do body
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
   };
 
   const closeLetterModal = () => {
     setIsLetterModalOpen(false);
     setTypedText('');
     setIsTyping(false);
+    // Restaura scroll do body
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
   };
 
   useEffect(() => {
@@ -392,10 +400,31 @@ Seu coração apaixonado ❤️`;
       setCurrentSlide((prev: number) => (prev + 1) % photoSlides.length);
     }, 7000);
 
+    // Cleanup para garantir que o scroll seja restaurado
     return () => {
       clearInterval(slideInterval);
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.classList.remove('modal-open');
     };
   }, [photoSlides.length]);
+
+  // useEffect específico para gerenciar o modal
+  useEffect(() => {
+    if (isLetterModalOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+    
+    // Cleanup quando o modal fecha
+    return () => {
+      if (!isLetterModalOpen) {
+        document.body.classList.remove('modal-open');
+      }
+    };
+  }, [isLetterModalOpen]);
 
   return (
     <div className="min-h-screen relative w-full bg-gray-900" style={{ 
@@ -1082,7 +1111,7 @@ Seu coração apaixonado ❤️`;
           color: #d50000;
         }
 
-        /* Estilos para o modal da carta - SCROLL MELHORADO */
+        /* Estilos para o modal da carta - SCROLL BLOQUEADO */
         .letter-modal-backdrop {
           position: fixed !important;
           top: 0 !important;
@@ -1095,6 +1124,7 @@ Seu coração apaixonado ❤️`;
           overflow-y: auto !important;
           -webkit-overflow-scrolling: touch !important;
           padding: 16px !important;
+          overscroll-behavior: contain !important;
         }
 
         .letter-modal-content {
@@ -1103,6 +1133,14 @@ Seu coração apaixonado ❤️`;
           max-height: none !important;
           margin: auto !important;
           overflow: visible !important;
+        }
+
+        /* Bloqueia scroll do body quando modal está aberto */
+        body.modal-open {
+          overflow: hidden !important;
+          position: fixed !important;
+          width: 100% !important;
+          height: 100vh !important;
         }
 
         /* Animações para os contadores de tempo */
@@ -1589,6 +1627,12 @@ Seu coração apaixonado ❤️`;
               onClick={(e) => {
                 if (e.target === e.currentTarget) {
                   closeLetterModal();
+                }
+              }}
+              onTouchMove={(e) => {
+                // Previne scroll quando toca fora do conteúdo do modal
+                if (e.target === e.currentTarget) {
+                  e.preventDefault();
                 }
               }}
             >
