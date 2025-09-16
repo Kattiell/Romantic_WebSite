@@ -124,7 +124,7 @@ const RomanticWebsite: React.FC = () => {
     backgroundImage: 'nw.jpg',
     loveName: 'Meu Amor',
     backgroundOpacity: 0.5,
-    unlockPassword: '170724',
+    unlockPassword: '170924',
     unlockPhoto: '14.jpeg',
     backgroundMusic: 'music.mp3'
   };
@@ -2013,7 +2013,7 @@ Seu coração apaixonado ❤️`;
 
           </div>
         </div>
-      )}
+      )}  
     </div>
   );
 };
