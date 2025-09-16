@@ -1659,7 +1659,7 @@ Seu coração apaixonado ❤️`;
                 
                 <div className="text-right mt-6">
                   <p className="text-red-600 font-bold text-xl italic" style={{ fontFamily: 'cursive' }}>
-                    Com todo meu amor, sempre ❤️
+                    Com todo meu amor, Gabriel ❤️
                   </p>
                 </div>
               </div>
